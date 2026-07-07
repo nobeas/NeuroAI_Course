@@ -162,11 +162,13 @@ def main():
         toc.append({"title": category, "children": chapters})
 
     # Professional Development
-    with open("projects/professional_development/prof_dev_materials.yml") as fh:
-        prof_dev_materials = convert_sections_to_children(
-            yaml.load(fh, Loader=yaml.FullLoader)
-        )
-    toc.append({"title": "Professional Development", "children": prof_dev_materials})
+    prof_dev_file_path = "projects/professional_development/prof_dev_materials.yml"
+    if os.path.exists(prof_dev_file_path):
+        with open(prof_dev_file_path) as fh:
+            prof_dev_materials = convert_sections_to_children(
+                yaml.load(fh, Loader=yaml.FullLoader)
+            )
+        toc.append({"title": "Professional Development", "children": prof_dev_materials})
 
     # Project Booklet
     with open("projects/project_materials.yml") as fh:
